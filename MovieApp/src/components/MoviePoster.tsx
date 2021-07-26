@@ -12,7 +12,6 @@ export const MoviePoster = ({movie}: Props) => {
 
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-    console.log(uri);
     return (
         <View style={{
                 width: 300, 
@@ -30,8 +29,6 @@ export const MoviePoster = ({movie}: Props) => {
 
 const styles = StyleSheet.create({
     image: {
-        //width: 100,
-        //height: 100,
         flex: 1,
         borderRadius: 18,
                 
