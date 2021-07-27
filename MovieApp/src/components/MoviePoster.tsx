@@ -38,13 +38,15 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         flex: 1,
+        borderRadius: 18,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 10
         },
         shadowOpacity: 0.24,
-        shadowRadius: 3.84,
+        shadowRadius: 7,
+
         elevation: 10,
     }
 

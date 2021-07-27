@@ -5,6 +5,7 @@ import { ActivityIndicator, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Carousel from 'react-native-snap-carousel';
+import { HorizontalSlider } from '../components/HorizontalSlider';
 
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
@@ -25,11 +26,6 @@ export const HomeScreen = () => {
 
         <ScrollView>
         <View style={{ marginTop : top + 20 }}>
-            {/* <MoviePoster
-                movie={ peliculasEnCine[0] } 
-            /> */}
-
-            {/*Carousel Principal*/}
             <View style={{
                 height: 440,
             
@@ -43,26 +39,8 @@ export const HomeScreen = () => {
             </View>
 
             {/* Peliculas populares */}
-            <View
-                style={{backgroundColor: 'red', height: 250 }}
-            >
-                <Text style={{fontSize:30, fontWeight: 'bold'}}>
-                    En Cine
-                </Text>
-                <FlatList
-                    data={peliculasEnCine}
-                    renderItem={ ( { item }: any) => (
-                        <MoviePoster 
-                            movie={ item }
-                            height={ 200 }
-                            width={ 140 } 
-                        />
-                    )}
-                    keyExtractor={ (item)=> item.id.toString() }
-                    horizontal={ true }
-                    showsHorizontalScrollIndicator={ false }
-                ></FlatList>
-            </View>
+            <HorizontalSlider title="En Cine" movies={peliculasEnCine}/>
+            
         </View>
         </ScrollView>
     )
