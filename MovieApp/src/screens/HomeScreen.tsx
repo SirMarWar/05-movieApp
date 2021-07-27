@@ -11,8 +11,9 @@ import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
 
 const {width: windowWidth } = Dimensions.get('window');
+
 export const HomeScreen = () => {
-    const {peliculasEnCine, isLoading} = useMovies();
+    const {peliculasEnCine, peliculasPopulares, isLoading} = useMovies();
     const {top} = useSafeAreaInsets();
 
     if (isLoading){
@@ -40,7 +41,7 @@ export const HomeScreen = () => {
 
             {/* Peliculas populares */}
             <HorizontalSlider title="En Cine" movies={peliculasEnCine}/>
-            
+            <HorizontalSlider title="Populares" movies={peliculasPopulares}/>
         </View>
         </ScrollView>
     )
