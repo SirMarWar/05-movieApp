@@ -23,7 +23,7 @@ export const DetailScreen = ({route}: Props) => {
         <ScrollView>
             <View style={styles.imageContainer}>
                 <View style={styles.imageBorder}>
-                    <Image
+                     <Image
                         source ={{uri}}
                         style={styles.posterImage}
                     />
