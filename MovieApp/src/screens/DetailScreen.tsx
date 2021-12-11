@@ -1,7 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
-import { Text, View, Image, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
-import { RootStackParams } from '../navigation/Navigation';
+import { Text, View, Image, StyleSheet, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { RootStackParams, Navigation } from '../navigation/Navigation';
 import { Movie } from '../interfaces/movieInterface';
 import { Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -12,7 +12,7 @@ const screenHeight = Dimensions.get('screen').height;
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'>{};
 
 
-export const DetailScreen = ({route}: Props) => {
+export const DetailScreen = ({route, navigation}: Props) => {
     
     const movie = route.params;
     const uri = `https://image.tmdb.org/t/p/w500${ movie.poster_path}`;
@@ -35,18 +35,27 @@ export const DetailScreen = ({route}: Props) => {
                 <Text style={ styles.title } >{ movie.title}</Text>
             </View>
 
-            <View style={{}}>
-                {isLoading 
-                    ? <ActivityIndicator size={30} color='grey' style = {{marginTop: 20}}/> 
-                    : <MovieDetails movieFull = {movieFull!} cast={cast}/>
-                }
+            
+            {isLoading 
+                ? <ActivityIndicator size={30} color='grey' style = {{marginTop: 20}}/> 
+                : <MovieDetails movieFull = {movieFull!} cast={cast}/>
+            }
                 
-                {/* <Icon
-                    name='star-outline'
-                    color='grey'
-                    size={ 20 }
-                /> */}
-            </View>
+            
+                {/* boton para cerrar */}
+            <TouchableOpacity
+                style={styles.backButton}
+                onPress={() => {navigation.pop() }}
+            >
+                <Icon
+                    color='white'
+                    name='arrow-back-outline'
+                    size={ 60 }
+                    
+                />
+            </TouchableOpacity>
+            
+
         </ScrollView>
     )
 }
@@ -91,6 +100,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
+    },
+    backButton: {
+        position: 'absolute',
+        zIndex: 999, //para IOs
+        elevation: 9,
+        top: 30,
+        left: 5
     }
 
 })  
